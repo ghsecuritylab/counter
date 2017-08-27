@@ -1,0 +1,88 @@
+Configuration	counter
+STM32CubeMX 	4.22.0
+Date	08/19/2017
+MCU	STM32F107RCTx
+
+
+
+PERIPHERALS	MODES	FUNCTIONS	PINS
+ETH	MII	ETH_COL	PA3
+ETH	MII	ETH_CRS	PA0-WKUP
+ETH	MII	ETH_MDC	PC1
+ETH	MII	ETH_MDIO	PA2
+ETH	MII	ETH_RXD0	PC4
+ETH	MII	ETH_RXD1	PC5
+ETH	MII	ETH_RXD2	PB0
+ETH	MII	ETH_RXD3	PB1
+ETH	MII	ETH_RX_CLK	PA1
+ETH	MII	ETH_RX_DV	PA7
+ETH	MII	ETH_TXD0	PB12
+ETH	MII	ETH_TXD1	PB13
+ETH	MII	ETH_TXD2	PC2
+ETH	MII	ETH_TXD3	PB8
+ETH	MII	ETH_TX_CLK	PC3
+ETH	MII	ETH_TX_EN	PB11
+ETH	Activate Rx Err signal	ETH_RX_ER	PB10
+SYS	No Debug	SYS_VS_ND	VP_SYS_VS_ND
+SYS	SysTick	SYS_VS_Systick	VP_SYS_VS_Systick
+UART4	Asynchronous	UART4_RX	PC11
+UART4	Asynchronous	UART4_TX	PC10
+USART1	Asynchronous	USART1_RX	PA10
+USART1	Asynchronous	USART1_TX	PA9
+
+
+
+Pin Nb	PINs	FUNCTIONs	LABELs
+3	PC14-OSC32_IN*	RCC_OSC32_IN	
+4	PC15-OSC32_OUT*	RCC_OSC32_OUT	
+5	PD0-OSC_IN*	RCC_OSC_IN	
+6	PD1-OSC_OUT*	RCC_OSC_OUT	
+9	PC1	ETH_MDC	
+10	PC2	ETH_TXD2	
+11	PC3	ETH_TX_CLK	
+14	PA0-WKUP	ETH_CRS	
+15	PA1	ETH_RX_CLK	
+16	PA2	ETH_MDIO	
+17	PA3	ETH_COL	
+23	PA7	ETH_RX_DV	
+24	PC4	ETH_RXD0	
+25	PC5	ETH_RXD1	
+26	PB0	ETH_RXD2	
+27	PB1	ETH_RXD3	
+29	PB10	ETH_RX_ER	
+30	PB11	ETH_TX_EN	
+33	PB12	ETH_TXD0	
+34	PB13	ETH_TXD1	
+42	PA9	USART1_TX	
+43	PA10	USART1_RX	
+51	PC10	UART4_TX	
+52	PC11	UART4_RX	
+61	PB8	ETH_TXD3	
+
+
+
+SOFTWARE PROJECT
+
+Project Settings : 
+Project Name : counter
+Project Folder : E:\work\test2\counter
+Toolchain / IDE : EWARM
+Firmware Package Name and Version : STM32Cube FW_F1 V1.6.0
+
+
+Code Generation Settings : 
+STM32Cube Firmware Library Package : Copy all used libraries into the project folder
+Generate peripheral initialization as a pair of '.c/.h' files per peripheral : No
+Backup previously generated files when re-generating : No
+Delete previously generated files when not re-generated : Yes
+Set all free pins as analog (to optimize the power consumption) : No
+
+
+Toolchains Settings : 
+Compiler Optimizations : Balanced Size/Speed
+
+
+
+
+
+
