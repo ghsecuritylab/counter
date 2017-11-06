@@ -1,19 +1,14 @@
 #ifndef __SHELL_H__
 #define __SHELL_H__
 
-#include "serial.h"
 #include "cmsis_os.h"
+#include "serial.h"
+#include "bill_counter.h"
 
-typedef struct
-{
-    SERIAL      xSerial;
-    osThreadId  xThread;
-}   SHELL;
+RET_VALUE   SHELL_start(BILL_COUNTER* pBC);
+RET_VALUE   SHELL_stop(void);
 
-RET_VALUE   SHELL_create(SHELL** ppShell);
-RET_VALUE   SHELL_destroy(SHELL** ppShell);
-
-RET_VALUE   SHELL_start( SHELL*    pShell, uint16_t usStackSize, UBaseType_t uxPriority );
-RET_VALUE   SHELL_stop( SHELL*    pShell);
-
+int         SHELL_getLine(char* pLine, unsigned int ulMaxLength, int bSecure );
+RET_VALUE   SHELL_print(char* pString);
+RET_VALUE   SHELL_dump(uint8_t *pBuffer, uint32_t ulLen);
 #endif

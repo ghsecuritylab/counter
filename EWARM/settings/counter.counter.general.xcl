@@ -2,7 +2,7 @@
 
 "D:\Program Files\IAR Systems\Embedded Workbench 7.3\arm\bin\armstlink2.dll" 
 
-"E:\work\test2\counter\EWARM\counter\Exe\counter.out" 
+"E:\work\STM32\counter\EWARM\counter\Exe\counter.out" 
 
 --plugin "D:\Program Files\IAR Systems\Embedded Workbench 7.3\arm\bin\armbat.dll" 
 

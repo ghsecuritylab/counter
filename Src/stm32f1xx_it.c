@@ -41,7 +41,7 @@
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
-extern ETH_HandleTypeDef heth;
+extern ETH_HandleTypeDef xETH;
 
 /******************************************************************************/
 /*            Cortex-M3 Processor Interruption and Exception Handlers         */ 
@@ -152,28 +152,9 @@ void SysTick_Handler(void)
   /* USER CODE END SysTick_IRQn 1 */
 }
 
-/******************************************************************************/
-/* STM32F1xx Peripheral Interrupt Handlers                                    */
-/* Add here the Interrupt Handlers for the used peripherals.                  */
-/* For the available peripheral interrupt handler names,                      */
-/* please refer to the startup file (startup_stm32f1xx.s).                    */
-/******************************************************************************/
-
-/**
-* @brief This function handles Ethernet global interrupt.
-*/
-void ETH_IRQHandler(void)
-{
-  /* USER CODE BEGIN ETH_IRQn 0 */
-
-  /* USER CODE END ETH_IRQn 0 */
-  HAL_ETH_IRQHandler(&heth);
-  /* USER CODE BEGIN ETH_IRQn 1 */
-
-  /* USER CODE END ETH_IRQn 1 */
-}
 
 /* USER CODE BEGIN 1 */
 
 /* USER CODE END 1 */
+
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

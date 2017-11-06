@@ -3,24 +3,28 @@
 
 #include "ret_value.h"
 #include "stm32f1xx_hal.h"
+#include "semphr.h"
 
 #define SERIAL_MAX_MUTEX_WAIT		pdMS_TO_TICKS( 300 )
 
-typedef struct
+typedef struct SERIAL_STRUCT
 {
     UART_HandleTypeDef  xUART;
+    IRQn_Type           xIRQ;
     SemaphoreHandle_t   xSemaphore;
-}   SERIAL;
+    SemaphoreHandle_t   xRxWait;
+    uint8_t *           pRxBuffer;
+    uint32_t            ulRxBufferLength;
+    uint32_t            ulRxIndex;
+    uint32_t            ulRxLength;
+    uint8_t             pTmpBuffer[8];
+}   SERIAL, *SERIAL_HANDLE;
 
 typedef enum
 { 
-    SERIAL_PORT_0,
     SERIAL_PORT_1,
-    SERIAL_PORT_2,
-    SERIAL_PORT_3,
     SERIAL_PORT_4,
-    SERIAL_PORT_5,
-    SERIAL_PORT_6
+    SERIAL_PORT_MAX
 } SERIAL_PORT;
 
 typedef enum 
@@ -68,14 +72,16 @@ typedef enum
 } SERIAL_BAUDRATE;
 
 
-RET_VALUE       SERIAL_open(SERIAL* pSerial, SERIAL_PORT xPort, SERIAL_BAUDRATE xBaudrate, SERIAL_PARITY xPartity, SERIAL_STOP_BITS xStop, SERIAL_DATA_BITS xData, unsigned portBASE_TYPE uxBufferLength);
-RET_VALUE       SERIAL_close(SERIAL* pSerial);
+RET_VALUE       SERIAL_open(SERIAL_PORT xPort, SERIAL_BAUDRATE xBaudrate, SERIAL_PARITY xPartity, SERIAL_STOP_BITS xStop, SERIAL_DATA_BITS xData, unsigned portBASE_TYPE uxBufferLength, SERIAL_HANDLE *phSerial);
+RET_VALUE       SERIAL_close(SERIAL_HANDLE hSerial);
 
-RET_VALUE       SERIAL_puts(SERIAL* pSerial, const char * const pcString, unsigned long ulLength, TickType_t xBlockTime);
-char            SERIAL_getc(SERIAL* pSerial, char *pValue, TickType_t xBlockTime);
-char            SERIAL_putc(SERIAL* pSerial, char cValue, TickType_t xBlockTime);
+unsigned long   SERIAL_gets(SERIAL_HANDLE hSerial, char *pValue, unsigned long ulSize, TickType_t xBlockTime);
+RET_VALUE       SERIAL_puts(SERIAL_HANDLE hSerial, const char * const pcString, unsigned long ulLength, TickType_t xBlockTime);
+char            SERIAL_getc(SERIAL_HANDLE hSerial, char *pValue, TickType_t xBlockTime);
+char            SERIAL_putc(SERIAL_HANDLE hSerial, char cValue, TickType_t xBlockTime);
+RET_VALUE       SERIAL_printf(SERIAL_HANDLE   hSerial, const char *pFormat, ... );
 
-RET_VALUE       SERIAL_waitForSemaphore(SERIAL* pSerial);
+RET_VALUE       SERIAL_waitForSemaphore(SERIAL_HANDLE hSerial);
 
 #endif
 

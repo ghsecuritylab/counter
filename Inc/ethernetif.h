@@ -54,22 +54,35 @@
 #include "lwip/err.h"
 #include "lwip/netif.h"
 #include "cmsis_os.h"
-
+#include "serverif.h"
 /* Within 'USER CODE' section, code will be kept by default at each generation */
 /* USER CODE BEGIN 0 */
 
 /* USER CODE END 0 */
 
 /* Exported functions ------------------------------------------------------- */
-err_t ethernetif_init(struct netif *netif);
+void    ETH_lowLevelInit(ETH_HandleTypeDef *pETH);
 
-void ethernetif_input( void const * argument );
-void ethernetif_update_config(struct netif *netif);
-void ethernetif_notify_conn_changed(struct netif *netif);
+uint32_t    ETH_getDuplexMode(void);
+void        ETH_setDuplexMode(uint32_t xMode);
+uint32_t    ETH_getSpeed(void);
+void        ETH_setSpeed(uint32_t xSpeed);
+uint32_t    ETH_getAutoNego(void);
 
-/* USER CODE BEGIN 1 */
+HAL_StatusTypeDef   ETH_ReadPHYRegister(uint16_t PHYReg, uint32_t *RegValue);
+HAL_StatusTypeDef   ETH_WritePHYRegister(uint16_t PHYReg, uint32_t ulRegValue);
+HAL_StatusTypeDef   ETH_configMAC(ETH_MACInitTypeDef *pConf);
+HAL_StatusTypeDef   ETH_start(void);
+HAL_StatusTypeDef   ETH_stop(void);
+HAL_StatusTypeDef   ETH_TransmitFrame(uint32_t    ulFrameLength);
 
-/* USER CODE END 1 */
+uint32_t            ETH_getDMAStatusRegister(void);
+uint32_t            ETH_setDMAStatusRegister(uint32_t ulStatus);
+void                ETH_resumeDMATransmission(void);
+
+ETH_DMADescTypeDef *ETH_getTxDesc(void);
+
+
 #endif
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

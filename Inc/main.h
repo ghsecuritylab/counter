@@ -67,14 +67,6 @@
 #define LED_STAT_Pin GPIO_PIN_11
 #define LED_STAT_GPIO_Port GPIOA
 
-/* USER CODE BEGIN Private defines */
-
-/* USER CODE END Private defines */
-
-void _Error_Handler(char *, int);
-
-#define Error_Handler() _Error_Handler(__FILE__, __LINE__)
-
 /**
   * @}
   */ 
